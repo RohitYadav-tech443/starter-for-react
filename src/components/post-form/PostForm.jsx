@@ -20,33 +20,60 @@ export default function PostForm({ post }) {
     const userData = useSelector((state) => state.auth.userData);
 
     const submit = async (data) => {
-        if (post) {
-            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
-
-            if (file) {
-                appwriteService.deleteFile(post.featuredImage);
-            }
-
-            const dbPost = await appwriteService.updatePost(post.$id, {
-                ...data,
-                featuredImage: file ? file.$id : undefined,
-            });
-
-            if (dbPost) {
-                navigate(`/post/${dbPost.$id}`);
-            }
-        } else {
-            const file = await appwriteService.uploadFile(data.image[0]);
-
-            if (file) {
-                const fileId = file.$id;
-                data.featuredImage = fileId;
-                const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
-
+        try {
+            if (post) {
+                const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+    
+                if (file) {
+                    appwriteService.deleteFile(post.featuredImage);
+                }
+    
+                if (!post.$id) {
+                 console.error("Post ID missing while updating");
+                 return;
+                }
+    
+                const dbPost = await appwriteService.updatePost(post.$id, {
+                    ...data,
+                    featuredImage: file ? file.$id : post.featuredImage,
+                });
+    
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
                 }
+                else{
+                    console.error("Update failed: no dbPost returned");
+                }
+            } else {
+                const file = await appwriteService.uploadFile(data.image[0]);
+
+                if (!file) {
+                console.error("❌ File upload failed or no file selected");
+                return;
+                }
+    
+                if (!userData?.$id) {
+                console.error("User not logged in or userData is missing");
+                return;
+                 }
+    
+                if (file) {
+                    const fileId = file.$id;
+                    data.featuredImage = fileId;
+
+                    const dbPost = await appwriteService.createPost({ ...data,
+                        featuredImage: file.$id,
+                         userId: userData.$id });
+    
+                    if (dbPost) {
+                        navigate(`/post/${dbPost.$id}`);
+                    }else{
+                        console.error("Create Failed:no dbPost returned");
+                    }
+                }
             }
+        } catch (error) {
+            console.error("The error is",error)
         }
     };
  

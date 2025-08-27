@@ -10,7 +10,7 @@ function PostCard({$id, title, featuredImage}) {
             <div className='w-full justify-center mb-4'>
                 <img src={appwriteService.getFilePreview(featuredImage)} alt={title}
                 className='rounded-xl' />
-
+                {/* onError={(e) => { e.target.src = "/fallback.png";}} */}
             </div>
             <h2
             className='text-xl font-bold'
