@@ -124,7 +124,8 @@ export class Service{
 
     getFilePreview(fileId){
         try {
-            return this.bucket.getFilePreview(
+            // one great bug which changed in recent years -> getFilePreview will not return you the images instead you need to use the getFileView feature of the appwrite
+            return this.bucket.getFileView(
                 conf.appwriteBucketId,
                 fileId
             )
