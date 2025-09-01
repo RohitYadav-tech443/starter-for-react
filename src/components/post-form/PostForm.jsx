@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Input, RTE, Select } from "../index";
+import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 export default function PostForm({ post }) {
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
-            // if suppose the user comes to edit or write the value in the post then we need to provide him with the post to edit or new post to write
             title: post?.title || "",
             slug: post?.$id || "",
             content: post?.content || "",
@@ -20,64 +19,36 @@ export default function PostForm({ post }) {
     const userData = useSelector((state) => state.auth.userData);
 
     const submit = async (data) => {
-        try {
-            if (post) {
-                const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
-    
-                if (file) {
-                    appwriteService.deleteFile(post.featuredImage);
-                }
-    
-                if (!post.$id) {
-                 console.error("Post ID missing while updating");
-                 return;
-                }
-    
-                const dbPost = await appwriteService.updatePost(post.$id, {
-                    ...data,
-                    featuredImage: file ? file.$id : post.featuredImage,
-                });
-    
+        if (post) {
+            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+
+            if (file) {
+                appwriteService.deleteFile(post.featuredImage);
+            }
+
+            const dbPost = await appwriteService.updatePost(post.$id, {
+                ...data,
+                featuredImage: file ? file.$id : undefined,
+            });
+
+            if (dbPost) {
+                navigate(`/post/${dbPost.$id}`);
+            }
+        } else {
+            const file = await appwriteService.uploadFile(data.image[0]);
+
+            if (file) {
+                const fileId = file.$id;
+                data.featuredImage = fileId;
+                const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
+
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
                 }
-                else{
-                    console.error("Update failed: no dbPost returned");
-                }
-            } else {
-                const file = await appwriteService.uploadFile(data.image[0]);
-
-                if (!file) {
-                console.error("❌ File upload failed or no file selected");
-                return;
-                }
-    
-                if (!userData?.$id) {
-                console.error("User not logged in or userData is missing");
-                return;
-                 }
-    
-                if (file) {
-                    const fileId = file.$id;
-                    data.featuredImage = fileId;
-
-                    const dbPost = await appwriteService.createPost({ ...data,
-                        featuredImage: file.$id,
-                         userId: userData.$id });
-    
-                    if (dbPost) {
-                        navigate(`/post/${dbPost.$id}`);
-                    }else{
-                        console.error("Create Failed:no dbPost returned");
-                    }
-                }
             }
-        } catch (error) {
-            console.error("The error is",error)
         }
     };
- 
-    // Slug Transform-> slug is used to replace the spaces present in the value with the '-' 
+
     const slugTransform = useCallback((value) => {
         if (value && typeof value === "string")
             return value

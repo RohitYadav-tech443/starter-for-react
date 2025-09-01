@@ -38,13 +38,13 @@ function Header() {
 
 
   return (
-    <header className="relative overflow-hidden py-10 border border-t-2 border-t-black bg-[url('https://tse2.mm.bing.net/th/id/OIP.iDN_Vgp7csLhucxdjs6C9wHaB2?pid=Api&P=0&h=180')] bg-cover bg-center"
+    <header className="relative overflow-hidden py-10 border border-t-2 border-t-black bg-[url('https://tse3.mm.bing.net/th/id/OIP.E14c5nh2FEfuoe1yVhPG-wHaCO?pid=Api&P=0&h=180')] bg-cover bg-center"
 >
       <Container>
         <nav className='flex'>
           <div className='mr-4'>
             <Link to='/'>
-              <Logo width='70px'   />
+              <Logo width='20px'   />
 
               </Link>
           </div>
