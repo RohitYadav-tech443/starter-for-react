@@ -38,7 +38,7 @@ function Header() {
 
 
   return (
-    <header className="relative overflow-hidden py-10 border border-t-2 border-t-black bg-[url('https://tse3.mm.bing.net/th/id/OIP.E14c5nh2FEfuoe1yVhPG-wHaCO?pid=Api&P=0&h=180')] bg-cover bg-center"
+    <header className="relative overflow-hidden py-4 border border-t-2 border-t-black bg-[url('https://tse3.mm.bing.net/th/id/OIP.E14c5nh2FEfuoe1yVhPG-wHaCO?pid=Api&P=0&h=180')] bg-cover bg-center"
 >
       <Container>
         <nav className='flex'>
@@ -55,7 +55,7 @@ function Header() {
                 className='text-white'>
                 <button
                 onClick={() => navigate(item.slug)}
-                className='inline-bock px-6 py-2 duration-200 hover:bg-blue-300 hover:text-black rounded-full'
+                className='inline-bock px-6 py-4 duration-200 hover:bg-blue-300 hover:text-black rounded-full'
                 >{item.name}</button>
               </li>
             ) : null

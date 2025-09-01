@@ -5,7 +5,7 @@ import {Logo} from '../index';
 export default function Footer() {
     return (
         <footer className="bg-white border-y">
-            <div className="bg-black mx-auto w-full max-w-screen-full p-4 py-6 lg:py-8">
+            <div className="bg-[url('https://tse1.mm.bing.net/th/id/OIP.eEb4kNlsY7bflfHqY5MBZwHaC5?pid=Api&P=0&h=180')] mx-auto w-full max-w-screen-full p-4 py-6 lg:py-8">
                 <div className="md:flex md:justify-between">
                     <div className="mb-6 md:mb-0">
                         <Link to="/" className="flex items-center">
@@ -14,8 +14,8 @@ export default function Footer() {
                     </div>
                     <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                         <div>
-                            <h2 className="mb-6 text-sm font-semibold text-gray-400 hover:text-white uppercase">Resources</h2>
-                            <ul className="text-gray-500   font-medium">
+                            <h2 className="mb-6 text-sm font-semibold text-black hover:text-white uppercase">Resources</h2>
+                            <ul className="text-black   font-medium">
                                 <li className="mb-4">
                                     <Link to="/" className="hover:underline hover:text-white">
                                         Home
@@ -29,8 +29,8 @@ export default function Footer() {
                             </ul>
                         </div>
                         <div>
-                            <h2 className="mb-6 text-sm font-semibold text-gray-400 hover:text-white uppercase">Follow us</h2>
-                            <ul className="text-gray-500 font-medium">
+                            <h2 className="mb-6 text-sm font-semibold text-black hover:text-white uppercase">Follow us</h2>
+                            <ul className="text-black font-medium">
                                 <li className="mb-4">
                                     <a
                                         href="https://github.com/hiteshchoudhary"
@@ -49,8 +49,8 @@ export default function Footer() {
                             </ul>
                         </div>
                         <div>
-                            <h2 className="mb-6 text-sm font-semibold text-gray-400 hover:text-white uppercase">Legal</h2>
-                            <ul className="text-gray-500 font-medium">
+                            <h2 className="mb-6 text-sm font-semibold text-black hover:text-white uppercase">Legal</h2>
+                            <ul className="text-black font-medium">
                                 <li className="mb-4">
                                     <Link to="#" className="hover:underline hover:text-white">
                                         Privacy Policy
@@ -67,7 +67,7 @@ export default function Footer() {
                 </div>
                 <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
                 <div className="sm:flex sm:items-center sm:justify-between">
-                    <span className="text-sm text-gray-500 sm:text-center">
+                    <span className="text-sm text-black sm:text-center">
                         © 2025 
                         <a href="https://www.instagram.com/rohit_calm/" className="hover:underline">
                             Rohit Yadav
@@ -77,7 +77,7 @@ export default function Footer() {
                     <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
                        <Link
                         to="https://www.linkedin.com/in/rohit-yadav-6567a9321/"
-                        className="text-gray-500 hover:text-blue-600 transition"
+                        className="text-black hover:text-blue-600 transition"
                         aria-label="LinkedIn page"
                         >
                         <svg
@@ -94,7 +94,7 @@ export default function Footer() {
 
                         <Link
                             to="https://www.instagram.com/rohit_calm/"
-                            className="text-gray-500 hover:text-pink-500 transition"
+                            className="text-black hover:text-pink-500 transition"
                             aria-label="Instagram page"
                             >
                             <svg
@@ -113,7 +113,7 @@ export default function Footer() {
 
 
 
-                        <Link to="https://github.com/RohitYadav-tech443" className="text-gray-500 hover:text-blue-600">
+                        <Link to="https://github.com/RohitYadav-tech443" className="text-black hover:text-blue-600">
                             <svg
                                 className="w-4 h-4"
                                 aria-hidden="true"
@@ -131,7 +131,7 @@ export default function Footer() {
                         </Link>
                         <Link
                         to="https://leetcode.com/u/RohitYadav94/"
-                        className="text-gray-500 hover:text-blue-600 transition"
+                        className="text-black hover:text-blue-600 transition"
                         aria-label="LeetCode page"
                         >
                         <svg

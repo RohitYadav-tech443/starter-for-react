@@ -39,7 +39,7 @@ function App() {
   
  return !loading ? (
   // 
-  <div className="min-h-screen flex flex-wrap content-between bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeF6ngCGone5UWQwEPdYbQwby6IEtjBEZfMg&s')] bg-cover bg-center">
+  <div className="min-h-screen flex flex-wrap content-between bg-[url('https://tse4.mm.bing.net/th/id/OIP.M7NrizpKBx932bPC4LrCagHaC-?pid=Api&P=0&h=180')] bg-cover bg-center">
     <div className="w-full block">
       <Header />
         <main className="flex-1 px-4 py-6 ">
